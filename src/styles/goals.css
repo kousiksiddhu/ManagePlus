@@ -1,0 +1,227 @@
+/* Goals page (module B) — layout the global utility classes can't express. */
+
+/* Designation picker chips */
+.goals-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.goals-picker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 550;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.goals-picker-chip:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.goals-picker-chip.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.goals-picker-chip .count {
+  font-size: 11.5px;
+  font-weight: 650;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  border-radius: 99px;
+  padding: 0 7px;
+  line-height: 18px;
+}
+
+.goals-picker-chip.active .count {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* Goal card grids */
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 14px;
+}
+
+.goal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+}
+
+.goal-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.goal-card-title {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.goal-card-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.goal-card:hover .goal-card-actions,
+.goal-card:focus-within .goal-card-actions {
+  opacity: 1;
+}
+
+.goal-card-desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  flex: 1;
+}
+
+.goal-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.goal-card-meta .target-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Individual tab: person list + effective goals */
+.goals-people-layout {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .goals-people-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.goals-person-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.goals-person-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.goals-person-item:hover {
+  background: var(--surface-2);
+}
+
+.goals-person-item.active {
+  background: var(--accent-soft);
+}
+
+.goals-person-item .person-name {
+  font-size: 13.5px;
+  font-weight: 550;
+  line-height: 1.3;
+}
+
+.goals-person-item.active .person-name {
+  color: var(--accent);
+}
+
+.goals-person-item .person-designation {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+/* Effective-goals sections */
+.goal-section {
+  margin-bottom: 22px;
+}
+
+.goal-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.goal-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.goal-section-title svg {
+  color: var(--accent);
+}
+
+.goal-section-note {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* Status quick-cycle control: looks like a badge, acts like a button */
+button.status-cycle {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: box-shadow 0.15s ease;
+}
+
+button.status-cycle:hover {
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+button.status-cycle:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

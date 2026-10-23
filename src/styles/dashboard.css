@@ -1,0 +1,167 @@
+/* Module E — Dashboard & Admin layout. All colors flow from theme variables
+   so every theme works; classes are namespaced (dash-/admin-/switch) to avoid
+   leaking into other modules' pages. */
+
+/* ---- stat tiles ---- */
+
+.dash-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dash-stat .stat-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dash-stat .stat-ico.success { background: var(--success-soft); color: var(--success); }
+.dash-stat .stat-ico.warning { background: var(--warning-soft); color: var(--warning); }
+.dash-stat .stat-ico.danger { background: var(--danger-soft); color: var(--danger); }
+
+/* ---- dashboard card grid ---- */
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.dash-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.dash-grid-3 > .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-tall { grid-row: span 2; }
+.dash-wide { grid-column: 1 / -1; }
+
+@media (max-width: 940px) {
+  .dash-grid,
+  .dash-grid-3 { grid-template-columns: minmax(0, 1fr); }
+  .dash-tall { grid-row: auto; }
+}
+
+/* ---- rows inside dashboard cards ---- */
+
+.dash-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-row:first-of-type { padding-top: 2px; }
+.dash-row:last-child { border-bottom: none; padding-bottom: 2px; }
+
+.dash-row-main { flex: 1; min-width: 0; }
+.dash-row-title {
+  font-weight: 600;
+  font-size: 13.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-row-side { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- team growth distribution meter ---- */
+
+.growth-meter {
+  display: flex;
+  gap: 2px; /* surface gap between segments */
+  height: 8px;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 4px 0 10px;
+}
+
+.growth-meter span { height: 100%; min-width: 6px; }
+
+/* ---- employee variant ---- */
+
+.dash-hero {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.dash-kv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.dash-kv > span:first-child { color: var(--text-secondary); }
+
+.dash-card-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---- admin page ---- */
+
+.admin-section { margin-top: 16px; }
+
+.admin-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* ---- toggle switch (admin flag) ---- */
+
+.switch {
+  position: relative;
+  width: 36px;
+  height: 21px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.switch.on { background: var(--accent); border-color: var(--accent); }
+.switch.on::after { transform: translateX(15px); background: var(--accent-contrast); }
+.switch:disabled { opacity: 0.45; cursor: not-allowed; }

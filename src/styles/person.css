@@ -1,0 +1,272 @@
+/* PersonPage (module D) — layout the utility classes can't express.
+   Colors only via theme CSS variables so all four themes work. */
+
+/* ---- identity header ---- */
+
+.person-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.person-header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.person-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px 28px;
+}
+
+.person-fact .fact-label {
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.person-fact .fact-value {
+  font-size: 13.5px;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+.person-skills {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---- check-in banner ---- */
+
+.person-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-size: 13.5px;
+}
+
+.person-banner.warning { background: var(--warning-soft); color: var(--warning); }
+.person-banner.danger { background: var(--danger-soft); color: var(--danger); }
+.person-banner svg { flex-shrink: 0; }
+.person-banner .banner-text { flex: 1; min-width: 0; }
+.person-banner .banner-text strong { font-weight: 650; }
+.person-banner .banner-sub { font-size: 12.5px; opacity: 0.85; }
+
+/* ---- stat tiles ---- */
+
+.stat-tile .stat-suffix {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 2px;
+}
+
+/* ---- tab toolbars & sections ---- */
+
+.person-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.person-toolbar .toolbar-note { margin-right: auto; }
+
+a.btn:hover { text-decoration: none; }
+
+.person-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.person-goals { display: grid; gap: 16px; }
+
+.person-goal-list { display: flex; flex-direction: column; }
+
+.person-goal {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.person-goal:first-child { padding-top: 2px; }
+.person-goal:last-child { border-bottom: none; padding-bottom: 4px; }
+
+.person-goal .goal-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.person-goal .goal-title { font-weight: 600; }
+.person-goal .goal-desc { margin-top: 3px; }
+
+/* ---- feedback list ---- */
+
+.person-feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feedback-item .fb-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.feedback-item .fb-spacer { flex: 1; }
+
+.feedback-item .fb-meta {
+  color: var(--muted);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.feedback-item .fb-actions { display: inline-flex; gap: 2px; }
+.feedback-item .fb-text { margin-top: 8px; }
+
+.goal-chip { display: inline-flex; align-items: center; gap: 5px; }
+
+.fb-mini { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.fb-mini:first-child { padding-top: 0; }
+.fb-mini:last-child { border-bottom: none; padding-bottom: 0; }
+
+.fb-mini .fb-mini-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.fb-mini .fb-mini-text {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- rating stars ---- */
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  color: var(--warning);
+}
+
+.stars .star-off { opacity: 0.28; }
+
+.star-picker { display: inline-flex; align-items: center; gap: 2px; }
+
+.star-picker button {
+  display: inline-flex;
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: var(--warning);
+  border-radius: 4px;
+}
+
+.star-picker button:hover { background: var(--surface-2); }
+.star-picker button .star-off { opacity: 0.28; }
+.star-picker .picker-clear { margin-left: 6px; }
+
+/* ---- charts ---- */
+
+.person-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.chart-box { position: relative; }
+.chart-box svg { display: block; width: 100%; height: auto; }
+
+.chart-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 7px 10px;
+  font-size: 12px;
+  min-width: 108px;
+  max-width: 220px;
+  z-index: 5;
+}
+
+.chart-tooltip .tip-title {
+  font-weight: 650;
+  margin-bottom: 3px;
+  color: var(--text);
+}
+
+.chart-tooltip .tip-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.chart-tooltip .tip-key {
+  display: inline-block;
+  width: 10px;
+  border-top: 2.5px solid;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+
+.chart-tooltip .tip-label { display: inline-flex; align-items: center; }
+.chart-tooltip .tip-value { font-weight: 650; color: var(--text); }
+.chart-tooltip .tip-note { margin-top: 4px; color: var(--muted); font-size: 11.5px; }
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.chart-legend .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+
+.chart-legend .legend-swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+.chart-legend .legend-swatch.circle { border-radius: 50%; }
+.chart-legend .legend-swatch.square { border-radius: 2px; }
+
+/* ---- responsive ---- */
+
+@media (max-width: 960px) {
+  .person-overview-grid,
+  .person-charts { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .person-header { flex-direction: column; }
+}
